@@ -1,0 +1,17 @@
+#!/bin/bash --login
+#SBATCH --job-name="LAVA_inc_2"
+#SBATCH --output="LAVA_output_inc_2"
+#SBATCH --time=100:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=128G
+#SBATCH --partition=rome
+#SBATCH --exclusive
+
+module load 2024
+module load R/4.4.2-gfbf-2024a
+
+export R_LIBS="/home/vagrawal/Rlibs:$R_LIBS"
+
+Rscript LAVA_inc_2_script.R "g1000_eur" "blocks_s2500_m25_f1_w200.locfile" "input.info.txt" "" "ANX;HF;BrS;STR;HYP;CAD;AF;Brdy_SND_res;Brdy_SND_inc;Brdy_DIST_res;Brdy_DIST_inc;Brdy_pacer;PR;QT;QRS;JT" "LAVA_output_inc"
